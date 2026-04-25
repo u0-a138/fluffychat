@@ -1,6 +1,6 @@
 {
   "applicationName": "FluffyChat",
-  "defaultHomeserver": "matrix.org",
+  "defaultHomeserver": "mozilla.modular.im",
   "presetHomeserver": "",
   "welcomeText": "",
   "privacyUrl": "https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md",
