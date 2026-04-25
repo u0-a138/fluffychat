@@ -1,0 +1,28 @@
+name: Deploy FluffyChat to Web Branch
+
+on:
+  push:
+    branches: [main]  # 当推送到 main 分支时触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.8'
+          channel: 'stable'
+
+      - run: flutter config --enable-web
+      - run: flutter build web --release
+
+      - name: Deploy to web branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          publish_branch: web  # 推送到 web 分支
+          force_orphan: true   # 强制清理 web 分支的提交历史
